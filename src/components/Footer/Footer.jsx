@@ -6,8 +6,8 @@ const Footer = () => {
                 
         <div className='py-6 text-sm text-center text-yellow-50 bg-black'>
 
-        <div className="grid-rows-4 flex justify-evenly my-container">
-        <div className="text-3xl font-bold tracking-wide text-center">
+        <div className="grid-rows-4 flex justify-evenly my-container lg:flex-row sm:flex-col">
+        <div className="text-3xl font-bold tracking-wide text-center ">
           RannaGhor <br /><br />
           <div className="text-xs font-normal">Food for the body is not enough. <br /> There must  be food for the soul.</div>
         </div>
@@ -30,7 +30,7 @@ const Footer = () => {
           Address <br /><br />
           <div className="text-xs font-normal py-2">2445, Khulshi</div>
           <div className="text-xs font-normal py-2">Chittagong</div>
-          <div className="text-xs font-normal flex items-center ms-2"><FaClock></FaClock> <span className="px-2">9.00 am -11.00 pm</span> </div>
+          <div className="text-xs font-normal flex ms-2 text-center sm:ms-48 lg:ms-0 "><FaClock></FaClock> <span className="px-2">9.00 am -11.00 pm</span> </div>
         </div>
 
         

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import profileImg from "../../assets/chef-cooking.png";
 import DeliveryFeature from "../DeliveryFeature/DeliveryFeature";
+import ExtraFeature from "./ExtraFeature";
 const Home = () => {
   return (
     <section>
@@ -38,29 +39,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="grid-rows-4 flex justify-evenly my-container">
-        <div className="text-4xl font-bold tracking-wide text-center">
-          10+ <br />
-          <div className="text-xl font-normal">Years of experience</div>
-        </div>
-
-        <div className="text-4xl font-bold tracking-wide text-center">
-          20+ <br />
-          <div className="text-xl font-normal">Team Members</div>
-        </div>
-
-        <div className="text-4xl font-bold tracking-wide text-center">
-          200+ <br />
-          <div className="text-xl font-normal">
-            Rgistered corporate customer
-          </div>
-        </div>
-
-        <div className="text-4xl font-bold tracking-wide text-center">
-          5+ <br />
-          <div className="text-xl font-normal">Coffee Shops</div>
-        </div>
-      </div>
+      <ExtraFeature></ExtraFeature>
       <DeliveryFeature></DeliveryFeature>
       
     </section>
