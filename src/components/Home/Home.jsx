@@ -14,8 +14,8 @@ const Home = () => {
             </span>{" "}
           </h1>
 
-          <p className="my-6 text-xs sm:text-base md:text-lg max-w-2/3 md:max-w-xl max-w-2xl text-gray-900">
-            Let&#39;s join us to become a cooking expert in evry kind of cusine with a fun way to learn.
+          <p className="my-6 text-xs sm:text-base md:text-lg max-w-2/3 md:max-w-xl max-w-2xl text-gray-900 text-justify">
+            Let&#39;s join us to become a cooking expert in evry kind of cusine with a fun way to learn.We source all of our food products from reputable local and international suppliers ensuring we provide a superior service to all of our customers.
           </p>
           <div className="flex flex-wrap justify-center">
             <Link to="/shop">
