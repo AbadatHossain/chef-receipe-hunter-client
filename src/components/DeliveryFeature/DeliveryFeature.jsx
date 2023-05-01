@@ -26,7 +26,10 @@ const DeliveryFeature = () => {
             Food brings people together on many different levels. It&#39;s
             Noursishment of the soul and body.
             <br /><br />
-           
+            <ul>
+              <li className="flex items-center ms-2"><FaClock></FaClock> <span className="px-2">Delivry within 30-40 mins.</span></li>
+              <li className="flex items-center ms-2"><FaDelicious></FaDelicious> <span className="px-2">Best offfer, prices and delicious</span></li>
+            </ul>
           </p>
         </div>
       </div>
