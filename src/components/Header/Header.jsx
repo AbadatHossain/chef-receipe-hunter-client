@@ -31,6 +31,17 @@ const Header = () => {
          
           <li>
             <NavLink
+              to="/recipies"
+              aria-label="recipies"
+              title="recipies"
+              className={({ isActive }) => (isActive ? "active" : "default")}
+            >
+              Recipies
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
               to="/blog"
               aria-label="blog"
               title="blog"
@@ -98,6 +109,16 @@ const Header = () => {
                 </div>
                 <nav>
                   <ul className="space-y-4">
+                    <li>
+                      <Link
+                        to="/recipies"
+                        aria-label="recipies"
+                        title="recipies"
+                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                      >
+                        Recipies
+                      </Link>
+                    </li>
                     <li>
                       <Link
                         to="/blog"
