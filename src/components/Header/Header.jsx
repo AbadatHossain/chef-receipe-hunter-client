@@ -50,8 +50,18 @@ const Header = () => {
               Blog
             </NavLink>
           </li>
-        </ul>
 
+          <li>
+            <NavLink
+              to="/login"
+              aria-label="login"
+              title="login"
+              className={({ isActive }) => (isActive ? "active" : "default")}
+            >
+              Login
+            </NavLink>
+          </li>
+        </ul>
       
         <div className="lg:hidden">
           <button
