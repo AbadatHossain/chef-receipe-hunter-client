@@ -1,7 +1,44 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useContext } from "react";
 
+
+import { Link } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProvider";
 const Register = () => {
+
+    const [error, setError] = useState('')
+    const {createUser} = useContext(AuthContext)
+
+
+    const handleSignUp = event =>{
+        event.preventDefault()
+        const form = event.target
+        const name = form.name.value
+        const email = form.email.value
+        const password = form.password.value
+        const confirm = form.password_confirmation.value
+        const photoUrl = form.photourl.value
+
+        console.log(name, email, password, confirm,photoUrl)
+setError('')
+        if(password !== password){
+    setError('Your password did not match, plz checked')
+}else if(password.length < 6){
+    setError('Password must be 6 characters')
+}
+createUser(email, password)
+.then(result =>{
+    const loggedUser = result.user
+    console.log(loggedUser)
+
+})
+.catch(error =>{
+    console.log(error)
+    setError(error.message)
+})
+        
+    }
+
   return (
     <div>
       <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
@@ -11,7 +48,7 @@ const Register = () => {
           </Link>
         </div>
         <div className="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-lg sm:rounded-lg">
-          <form>
+          <form onSubmit={handleSignUp}>
             <div>
               <label
                 htmlFor="name"
@@ -23,6 +60,7 @@ const Register = () => {
                 <input
                   type="text"
                   name="name"
+                  required
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
               </div>
@@ -38,6 +76,7 @@ const Register = () => {
                 <input
                   type="email"
                   name="email"
+                  required
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
               </div>
@@ -53,11 +92,27 @@ const Register = () => {
                 <input
                   type="password"
                   name="password"
+                  required
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
               </div>
             </div>
-            <div className="mb-2">
+            <div className="mt-4">
+              <label
+                htmlFor="password_confirmation"
+                className="block text-sm font-medium text-gray-700 undefined"
+              >
+                Confirm Password
+              </label>
+              <div className="flex flex-col items-start">
+                <input
+                  type="password"
+                  name="password_confirmation" required
+                  className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                />
+              </div>
+            </div>
+            <div className="mb-2 mt-2">
               <label
                 htmlFor="photoUrl"
                 className="block text-sm font-semibold text-gray-800"
@@ -65,7 +120,8 @@ const Register = () => {
                 PhotoUrl
               </label>
               <input
-                type="photoUrl"
+                type="text"
+                name="photourl"
                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
@@ -86,6 +142,7 @@ const Register = () => {
               </Link>
             </span>
           </div>
+          <h5 className="text-red-700 mt-3">{error}</h5>
           <div className="flex items-center w-full my-4">
             <hr className="w-full" />
             <p className="px-3 ">OR</p>

@@ -36,9 +36,14 @@ const router = createBrowserRouter([
           element: <Login></Login>
         },
         {
-          path: "/recipies/:id",
+          path: "recipies/:id",
           element: <SelectedRecipies></SelectedRecipies>,
           loader: ({params})=> fetch(`https://chef-receipe-hunter-server-abadathossain.vercel.app/recipes/${params.id}`)
+        },
+        {
+          path: "recipies",
+          element: <SelectedRecipies></SelectedRecipies>,
+          loader: ()=> fetch('https://chef-receipe-hunter-server-abadathossain.vercel.app/recipes/')
         },
       ]
     },

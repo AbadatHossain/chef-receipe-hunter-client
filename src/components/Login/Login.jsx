@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProvider";
 
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signIn(email, password)
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
@@ -9,7 +28,7 @@ const Login = () => {
           <h1 className="text-3xl font-semibold text-center text-purple-700 uppercase">
             Log in/Sign in
           </h1>
-          <form className="mt-6">
+          <form onSubmit={handleLogin} className="mt-6">
             <div className="mb-2">
               <label
                 htmlFor="email"
@@ -19,6 +38,7 @@ const Login = () => {
               </label>
               <input
                 type="email"
+                name="email"
                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
@@ -31,6 +51,7 @@ const Login = () => {
               </label>
               <input
                 type="password"
+                name="password"
                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>

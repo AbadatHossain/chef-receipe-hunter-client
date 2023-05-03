@@ -1,7 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProvider";
+
 
 const Header = () => {
+
+  const {user, logOut} = useContext(AuthContext)
+
+  const handleLogOut =() =>{
+    logOut()
+    .then(result =>{})
+    .catch(error => console.log(error))
+  }  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 bg-orange-400">
@@ -15,6 +25,7 @@ const Header = () => {
           <span className="ml-2 text-4xl font-bold tracking-wide text-gray-800 ">
             RannaGhor
           </span>
+          
         </Link>
         <ul className="items-center hidden space-x-8 lg:flex">
           <li>
@@ -61,6 +72,20 @@ const Header = () => {
               Login
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/register"
+              aria-label="signup"
+              title="signup"
+              className={({ isActive }) => (isActive ? "active" : "default")}
+            >
+              SignUp
+            </NavLink>
+          </li>
+
+          {
+            user && <span>{user.email} <button onClick={handleLogOut}>LogOut</button></span>
+          }
         </ul>
       
         <div className="lg:hidden">
