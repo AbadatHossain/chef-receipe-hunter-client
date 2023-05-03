@@ -1,9 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import app from "../../firebase/firebase.config";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
+  const  [user, setUser] = useState(null)
+  const auth = getAuth(app)
+  const provider = new GoogleAuthProvider
+
+  const handleGooleSignIn = ()=>{
+    signInWithPopup(auth, provider)
+    .then(result =>{
+      const loggedUser = result.user
+      setUser(loggedUser)
+    })
+    .catch(error =>{
+      console.log(error.message)
+    })
+  }
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -69,7 +85,7 @@ const Login = () => {
             <div className="absolute px-5 bg-white">Or</div>
           </div>
           <div className="flex mt-4 gap-x-2">
-            <button
+            <button onClick={handleGooleSignIn}
               type="button"
               className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-violet-600"
             >
