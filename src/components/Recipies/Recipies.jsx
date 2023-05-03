@@ -5,7 +5,7 @@ const Recipies = () => {
   const [error, setErrror] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/recipes")
+    fetch("https://chef-receipe-hunter-server-abadathossain.vercel.app/recipes")
       .then((res) => res.json())
       .then((data) => setRecipies(data))
       .catch((error) => setErrror(error));
