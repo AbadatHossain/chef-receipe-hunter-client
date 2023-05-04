@@ -1,8 +1,17 @@
 import React from "react";
+import { useRef } from "react";
+import Pdf from "react-to-pdf";
 
 const Blog = () => {
+  const ref = useRef();
   return (
-    <div className="my-container">
+    
+
+
+      <div>
+
+
+      <div ref={ref}><div className="my-container">
       <h1 className="font-bold text-3xl text-center">Blog Page</h1>
       <h3 className="font-bold">
         1.What is the differences between uncontrolled and controlled
@@ -114,7 +123,14 @@ const Blog = () => {
         applications. <br /><br />
         When you have component logic that needs to be used by multiple components, we can extract that logic to a custom Hook. Custom Hooks start with use. Example: useFetch.Imagine you are developing an app that heavily relies on the network (as most apps do). You want to warn the user if their network connection has accidentally gone off while they were using your app. 
       </p>{" "}
-      <br />
+      <br /></div>
+
+      <Pdf targetRef={ref} filename="blog-document.pdf">
+        {({ toPdf }) => <button onClick={toPdf} className="btn-primary text-center ">Generate Pdf</button>}
+      </Pdf>
+     
+      
+    </div>
     </div>
   );
 };
