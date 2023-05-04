@@ -1,12 +1,17 @@
 import React, { useContext } from "react";
 import { Navigate, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
 
 const SelectedRecipies = () => {
   const { user } = useContext(AuthContext);
   // const {id} = useParams()
   const selectedRecipes = useLoaderData();
   console.log(selectedRecipes);
+
+  const handleToast = () => {
+    toast("Wow so favorite! This is yammi recipes");
+  };
 
   if (!user) {
     return (
@@ -36,33 +41,77 @@ const SelectedRecipies = () => {
         Number_of_recipes: {selectedRecipes.number_of_recipes}
       </h3>
       <h3 className="text-center">Likes: {selectedRecipes.likes}</h3>
-      <p >{selectedRecipes.description}</p>
-
+      <p>{selectedRecipes.description}</p>
 
       <div className="outline-2">
-      <p className="text-center mt-3 "> Gradients of chinese food: <br /> <span className="font-bold "><li>{selectedRecipes.gradients_of_chinese_food}</li></span> </p>
-      
+        <p className="text-center mt-3 ">
+          {" "}
+          Gradients of chinese food: <br />{" "}
+          <span className="font-bold ">
+            <li>{selectedRecipes.gradients_of_chinese_food}</li>
+          </span>{" "}
+        </p>
       </div>
-
 
       <h3 className="text-center font-bold text-2xl mb-4 mt-5 ">
         Different Recipe with Grediants
       </h3>
       <div className="grid lg:grid-cols-3 md:grid-cols-1 outline-2 ">
-      
-      <div>
-      <p className="text-center mt-3"> Receipes Name: <span className="font-bold ">{selectedRecipes.recipes[0].name}</span> </p>
-      <p className="text-center mt-3"> Grediants Name: <span className="font-bold "> {(selectedRecipes.recipes[0].ingredients). map(ing =>(ing))}</span> </p>
+        <div>
+          <p className="text-center mt-3">
+            {" "}
+            Receipes Name:{" "}
+            <span className="font-bold ">
+              {selectedRecipes.recipes[0].name}
+            </span>{" "}
+          </p>
+          <p className="text-center mt-3">
+            {" "}
+            Grediants Name:{" "}
+            <span className="font-bold ">
+              {" "}
+              {selectedRecipes.recipes[0].ingredients.map((ing) => ing)}
+            </span>{" "}
+          </p>
+        </div>
+        <div>
+          <p className="text-center mt-3">
+            {" "}
+            Receipes Name:{" "}
+            <span className="font-bold ">
+              {selectedRecipes.recipes[1].name}
+            </span>{" "}
+          </p>
+          <p className="text-center mt-3">
+            {" "}
+            Grediants Name:{" "}
+            <span className="font-bold ">
+              {" "}
+              {selectedRecipes.recipes[0].ingredients.map((ing) => ing)}
+            </span>{" "}
+          </p>
+        </div>
+        <div>
+          <p className="text-center mt-3">
+            {" "}
+            Receipes Name:{" "}
+            <span className="font-bold ">
+              {selectedRecipes.recipes[2].name}
+            </span>{" "}
+          </p>
+          <p className="text-center mt-3">
+            {" "}
+            Grediants Name:{" "}
+            <span className="font-bold ">
+              {" "}
+              {selectedRecipes.recipes[0].ingredients.map((ing) => ing)}
+            </span>{" "}
+          </p>
+        </div>
       </div>
-      <div>
-      <p className="text-center mt-3"> Receipes Name: <span className="font-bold ">{selectedRecipes.recipes[1].name}</span> </p>
-      <p className="text-center mt-3"> Grediants Name: <span className="font-bold "> {(selectedRecipes.recipes[0].ingredients). map(ing =>(ing))}</span> </p>
-      </div>
-      <div>
-      <p className="text-center mt-3"> Receipes Name: <span className="font-bold ">{selectedRecipes.recipes[2].name}</span> </p>
-      <p className="text-center mt-3"> Grediants Name: <span className="font-bold "> {(selectedRecipes.recipes[0].ingredients). map(ing =>(ing))}</span> </p>
-      </div>
-      </div>
+
+      <button className="btn-primary items-center mx-auto" onClick={handleToast}>Favorite</button>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };
