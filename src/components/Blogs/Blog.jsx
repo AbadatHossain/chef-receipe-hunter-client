@@ -126,7 +126,7 @@ const Blog = () => {
       <br /></div>
 
       <Pdf targetRef={ref} filename="blog-document.pdf">
-        {({ toPdf }) => <button onClick={toPdf} className="btn-primary text-center ">Generate Pdf</button>}
+        {({ toPdf }) => <button onClick={toPdf} className="btn-primary text-center mx-auto">Generate Pdf</button>}
       </Pdf>
      
       

@@ -23,7 +23,7 @@ const Home = () => {
             superior service to all of our customers.
           </p>
           <div className="flex flex-wrap justify-center">
-            <Link to="/shop">
+            <Link to="/Cookingrecipes">
               <button type="button" className="btn-primary">
                 Join Lesson
               </button>

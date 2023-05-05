@@ -1,43 +1,39 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 
-
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 const Register = () => {
+  const [error, setError] = useState("");
+  const { createUser } = useContext(AuthContext);
 
-    const [error, setError] = useState('')
-    const {createUser} = useContext(AuthContext)
+  const handleSignUp = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const confirm = form.password_confirmation.value;
+    const photoUrl = form.photourl.value;
 
-
-    const handleSignUp = event =>{
-        event.preventDefault()
-        const form = event.target
-        const name = form.name.value
-        const email = form.email.value
-        const password = form.password.value
-        const confirm = form.password_confirmation.value
-        const photoUrl = form.photourl.value
-
-        console.log(name, email, password, confirm,photoUrl)
-setError('')
-        if(password !== password){
-    setError('Your password did not match, plz checked')
-}else if(password.length < 6){
-    setError('Password must be 6 characters')
-}
-createUser(email, password)
-.then(result =>{
-    const loggedUser = result.user
-    console.log(loggedUser)
-
-})
-.catch(error =>{
-    console.log(error)
-    setError(error.message)
-})
-        
+    console.log(name, email, password, confirm, photoUrl);
+    setError("");
+    if (password !== confirm) {
+      setError("Your password did not match, plz checked");
+    } else if (password.length < 6) {
+      setError("Password must be 6 characters");
     }
+    createUser(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        form.reset()
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(error.message);
+      });
+  };
 
   return (
     <div>
@@ -107,7 +103,8 @@ createUser(email, password)
               <div className="flex flex-col items-start">
                 <input
                   type="password"
-                  name="password_confirmation" required
+                  name="password_confirmation"
+                  required
                   className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 />
               </div>

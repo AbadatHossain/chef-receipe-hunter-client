@@ -8,6 +8,8 @@ import Recipies from '../components/Recipies/Recipies.jsx';
 import SelectedRecipies from '../components/Recipies/SelectedRecipies.jsx';
 import Register from '../components/Register/Register.jsx';
 import Login from '../components/Login/Login.jsx';
+import CookingRecipes from '../components/CookingRecipes/CookingRecipes.jsx';
+// import PrivateRoute from './PrivateRoute.jsx';
 
 const router = createBrowserRouter([
     {
@@ -36,15 +38,21 @@ const router = createBrowserRouter([
           element: <Login></Login>
         },
         {
-          path: "recipies/:id",
-          element: <SelectedRecipies></SelectedRecipies>,
-          loader: ({params})=> fetch(`https://chef-receipe-hunter-server-abadathossain.vercel.app/recipes/${params.id}`)
+          path: "/Cookingrecipes",
+          element: <CookingRecipes></CookingRecipes>
         },
         {
           path: "recipies",
-          element: <SelectedRecipies></SelectedRecipies>,
+          element: <Recipies></Recipies>,
           loader: ()=> fetch('https://chef-receipe-hunter-server-abadathossain.vercel.app/recipes/')
         },
+        {
+          path: "recipies/:id",
+          element: <SelectedRecipies></SelectedRecipies>,
+            // element: <PrivateRoute><SelectedRecipies></SelectedRecipies></PrivateRoute>,
+          loader: ({params})=> fetch(`https://chef-receipe-hunter-server-abadathossain.vercel.app/recipes/${params.id}`)
+        }
+        
       ]
     },
   ]);

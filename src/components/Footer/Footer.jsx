@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaClock } from "react-icons/fa";
+import { NavLink } from 'react-router-dom';
 const Footer = () => {
     return (
       <footer className='divide-y  text-gray-800'>
@@ -14,9 +15,34 @@ const Footer = () => {
 
         <div className="text-3xl font-bold tracking-wide text-center">
           Main Menu <br /><br />
-          <div className="text-xs font-normal py-2">Home</div>
-          <div className="text-xs font-normal py-2">About</div>
-          <div className="text-xs font-normal">Blog</div>
+          <div className="text-xs font-normal py-2"> <NavLink
+              to="/"
+              aria-label="Home"
+              title="Home"
+              className={({ isActive }) => (isActive ? "active" : "default")}
+            >
+              Home
+            </NavLink></div>
+          <div className="text-xs font-normal py-2">
+          <NavLink
+              to="/recipies"
+              aria-label="recipies"
+              title="recipies"
+              className={({ isActive }) => (isActive ? "active" : "default")}
+            >
+              Recipies
+            </NavLink>
+          </div>
+          <div className="text-xs font-normal">
+          <NavLink
+              to="/blog"
+              aria-label="blog"
+              title="blog"
+              className={({ isActive }) => (isActive ? "active" : "default")}
+            >
+              Blog
+            </NavLink>
+          </div>
         </div>
 
         <div className="text-3xl font-bold tracking-wide text-center">
